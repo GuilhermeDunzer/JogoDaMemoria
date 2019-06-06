@@ -1,13 +1,39 @@
+var column0 = document.querySelector('#column0');
+
 class MemoryCard {
     constructor(identifier) {
         this.foundMatch = false;
-        this.identifier = identifier
+        this.identifier = identifier;
+        this.box = {};
     }
 
     logValues() {
         console.log("encontrou par" + this.foundMatch + "identificador" + this.identifier);
     }
 }
+
+function renderMemoryCard() {
+    column0.innerHTML = '';
+
+    var a0_0memoryCard = new MemoryCard("blue");
+    a0_0memoryCard.box = createBox();
+    column0.appendChild(a0_0memoryCard.box);
+
+
+
+}
+
+
+function createBox(){
+    var box = document.createElement('div');
+    box.setAttribute('class', 'box');
+    return box
+}
+
+renderMemoryCard();
+
+/*
+
 
 var lastMemoryCard = null
 
@@ -43,7 +69,7 @@ function a0_0clicked() {
     } else {
         if (lastMemoryCard.identifier === memoryCard.identifier) {
             console.log("DEU MATCH")
-        }else{
+        } else {
             console.log("NÃO DEU MATCH")
         }
         lastMemoryCard = null
@@ -61,7 +87,7 @@ function a1_0clicked() {
     } else {
         if (lastMemoryCard.identifier === memoryCard.identifier) {
             console.log("DEU MATCH")
-        }else{
+        } else {
             console.log("NÃO DEU MATCH")
         }
         lastMemoryCard = null
@@ -79,7 +105,7 @@ function a0_1clicked() {
     } else {
         if (lastMemoryCard.identifier === memoryCard.identifier) {
             console.log("DEU MATCH")
-        }else{
+        } else {
             console.log("NÃO DEU MATCH")
         }
         lastMemoryCard = null
@@ -97,7 +123,7 @@ function a1_1clicked() {
     } else {
         if (lastMemoryCard.identifier === memoryCard.identifier) {
             console.log("DEU MATCH")
-        }else{
+        } else {
             console.log("NÃO DEU MATCH")
         }
         lastMemoryCard = null
@@ -106,7 +132,12 @@ function a1_1clicked() {
     a1_1.style.backgroundColor = memoryCard.identifier;
 }
 
+/*
+document.querySelector('#fuo').addEventListener('click', function () {
+    console.log( 'oi' );
 
+});
+ */
 
 
 
