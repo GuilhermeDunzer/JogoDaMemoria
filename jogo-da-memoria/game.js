@@ -1,34 +1,82 @@
 var column0 = document.querySelector('#column0');
 
+var memoryCard0_0 = null;
+var memoryCard0_1 = null;
+var memoryCard0_2 = null;
+var memoryCard0_3 = null;
+
 class MemoryCard {
     constructor(identifier) {
         this.foundMatch = false;
         this.identifier = identifier;
         this.box = {};
     }
-
-    logValues() {
-        console.log("encontrou par" + this.foundMatch + "identificador" + this.identifier);
-    }
 }
 
 function renderMemoryCard() {
     column0.innerHTML = '';
 
-    var a0_0memoryCard = new MemoryCard("blue");
-    a0_0memoryCard.box = createBox();
-    column0.appendChild(a0_0memoryCard.box);
+    memoryCard0_0 = createMemoryCard("blue");
+    memoryCard0_1 = createMemoryCard("blue");
+    memoryCard0_2 = createMemoryCard("yellow");
+    memoryCard0_3 = createMemoryCard("yellow");
 
-
+    column0.appendChild(memoryCard0_0.box);
+    column0.appendChild(memoryCard0_1.box);
+    column0.appendChild(memoryCard0_2.box);
+    column0.appendChild(memoryCard0_3.box);
 
 }
 
+function createMemoryCard(identifier) {
 
-function createBox(){
+    var memoryCard = new MemoryCard(identifier);
+    memoryCard.box = createBox();
+    memoryCard.box.addEventListener('click', function () {
+
+            console.log(memoryCard.identifier);
+
+            if (memoryCardSelected === null) {
+                memoryCardSelected = memoryCard;
+                memoryCard.box.style.backgroundColor = memoryCard.identifier;
+            } else {
+                if (memoryCardSelected.identifier === memoryCard.identifier) {
+                    memoryCard.box.style.backgroundColor = memoryCard.identifier;
+                    memoryCardSelected.foundMatch = true;
+                    memoryCard.foundMatch = true;
+                } else {
+                    memoryCardSelected.box.style.backgroundColor = "red";
+                }
+                memoryCardSelected = null;
+            }
+
+            isGameEnded();
+        }
+    );
+
+    return memoryCard;
+}
+
+function isGameEnded() {
+    console.log("memory card 00 "+memoryCard0_0.foundMatch);
+    console.log("memory card 01 "+memoryCard0_1.foundMatch);
+    console.log("memory card 02 "+memoryCard0_2.foundMatch);
+    console.log("memory card 03 "+memoryCard0_3.foundMatch);
+
+    if (memoryCard0_0.foundMatch === true && memoryCard0_1.foundMatch === true && memoryCard0_2.foundMatch === true && memoryCard0_3.foundMatch === true) {
+        console.log("Você encontrou todos os pares e venceu o jogo!!");
+    }
+
+}
+
+function createBox() {
     var box = document.createElement('div');
     box.setAttribute('class', 'box');
+
     return box
 }
+
+var memoryCardSelected = null;
 
 renderMemoryCard();
 
